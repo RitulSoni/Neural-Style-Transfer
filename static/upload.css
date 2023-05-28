@@ -1,4 +1,4 @@
-/* Styling for the drag and drop container */
+/* Styling for the drag and drop container
 .upload-area {
     width: 100%;
     height: 200px;
@@ -20,5 +20,28 @@
     width: 100%;
     max-height: 300px;
     object-fit: contain;
+} */
+
+
+/* Styling for the drag and drop container */
+.upload-area {
+    height: 200px;
+    border: 2px dashed #ddd;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 16px;
 }
 
+.upload-area.highlight {
+    border-color: purple;
+    background: #f9f9f9;
+}
+
+#style-output, #content-output {
+    width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+}
