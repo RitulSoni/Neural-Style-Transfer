@@ -2,15 +2,71 @@
 <html>
 <head>
     <title>Neural Style Transfer</title>
+    <!-- Import Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        /* Styling for the drag and drop container */
+        .upload-area {
+            width: 100%;
+            height: 200px;
+            border: 2px dashed #ddd;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 16px;
+        }
+
+        .upload-area.highlight {
+            border-color: purple;
+            background: #f9f9f9;
+        }
+
+        #style-output, #content-output {
+            width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+        }
+    </style>
 </head>
 <body>
-    <h1>Neural Style Transfer</h1>
-    <form action="/" method="post" enctype="multipart/form-data">
-        <label for="style">Choose style image:</label><br>
-        <input type="file" id="style" name="style" accept="image/*"><br>
-        <label for="content">Choose content image:</label><br>
-        <input type="file" id="content" name="content" accept="image/*"><br>
-        <input type="submit" value="Upload">
-    </form>
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Neural Style Transfer</h1>
+        <form action="/" method="post" enctype="multipart/form-data" id="upload-form">
+            <div class="form-group">
+                <label for="style">Choose style image:</label>
+                <div class="upload-area" id="style-upload-area">
+                    <p>Drag and drop file here</p>
+                    <input type="file" class="form-control-file" id="style" name="style" accept="image/*" onchange="loadFile(event, 'style-output')">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="content">Choose content image:</label>
+                <div class="upload-area" id="content-upload-area">
+                    <p>Drag and drop file here</p>
+                    <input type="file" class="form-control-file" id="content" name="content" accept="image/*" onchange="loadFile(event, 'content-output')">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+        <!-- Progress bar -->
+        <div class="progress mt-3" style="display: none;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <!-- Display the chosen images -->
+        <div class="row mt-3">
+            <div class="col-6">
+                <h5>Style Image:</h5>
+                <img id="style-output"/>
+            </div>
+            <div class="col-6">
+                <h5>Content Image:</h5>
+                <img id="content-output"/>
+            </div>
+        </div>
+    </div>
+    <!-- Script for drag and drop functionality -->
+    <script src="static/upload.js"></script>
 </body>
 </html>
