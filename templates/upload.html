@@ -48,7 +48,8 @@
                     <input type="file" class="form-control-file" id="content" name="content" accept="image/*" onchange="loadFile(event, 'content-output')">
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Upload</button>
+            <button type="submit" class="btn btn-primary" id="start-transfer-btn" disabled>Start Transfer</button>
+
         </form>
         <!-- Progress bar -->
         <div class="progress mt-3" style="display: none;">
@@ -64,6 +65,13 @@
                 <h5>Content Image:</h5>
                 <img id="content-output"/>
             </div>
+        </div>
+        <!-- Display the output image -->
+        <div class="mt-3">
+            <h2>Neural Style Transfer Result:</h2>
+            <img id="nst-output" src="" style="display: none;" id="output-image"/>
+            <br>
+            <button onclick="location.reload();" class="btn btn-primary mt-2">Try again</button>
         </div>
     </div>
     <!-- Script for drag and drop functionality -->

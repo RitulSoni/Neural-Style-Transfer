@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from werkzeug.utils import secure_filename
 from PIL import Image
 import torch
@@ -142,6 +142,10 @@ def run_style_transfer(cnn, normalization_mean, normalization_std,
     input_img.data.clamp_(0, 1)
     return input_img
 
+
+
+
+
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
@@ -159,8 +163,11 @@ def upload_file():
                                         content_img, style_img, input_img)
             output_path = 'static/output.jpg'
             image_saver(output, output_path)
-            return render_template('output.html', image_path=output_path)
+            return jsonify({'image_path': output_path})
     return render_template('upload.html')
+
+
+
 
 if __name__ == '__main__':
     app.run(port=5000)
